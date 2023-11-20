@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>django Project</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% block styles %}
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        <link href="{% static 'plugins/elegant_font/css/style.css' %}" rel="stylesheet">
+        <link href="{% static 'plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'fontawesome/js/all.js' %}" rel="stylesheet">
+    {% endblock %}
+</head>
+<body class="landing-page">
+    
+    <div class="page-wrapper">
+        <!-- ******Header****** -->
+        <header class="header text-center">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo">
+                        <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                        <span class="text-highlight">Pretty</span><span class="text-bold">Docs</span>
+                    </h1>
+                </div><!--//branding-->
+                <div class="tagline">
+                    <p>Let get started</p>
+                    <p><i class="fas fa-heart"></i></p>
+                </div><!--//tagline-->
+        </header><!--//header-->
+        <section class="cards-section text-center">
+            <!-- <div class="container">    
+                 <div class="intro">
+                    <div class="cta-container">
+
+                        <form method="post" enctype="multipart/form-data" class="docs-search-form row gx-1 align-items-center" action="{% url 'index' %}" id="fileUploadForm">
+                            {% csrf_token %}       
+                            <input type="file" name="file" id="id_file" accept=".xls, .xlsx">
+                            <button type="submit">Importer le fichier</button>
+                        </form> 
+
+                    </div> 
+                </div> -->
+                <div id="cards-wrapper" class="cards-wrapper row">
+                    <div class="item item-green col-lg-4 col-6">
+                        <div class="item-inner">
+                            <div class="icon-holder">
+                                <span aria-hidden="true" class="icon icon_genius"></span>
+                                <i class="icon fa fa-paper-plane"></i>
+                            </div><!--//icon-holder-->
+                            <h3 class="title">visualiser le fichier</h3>         
+                            <p class="intro">Affichier votre fichier</p>
+                            <a class="link" href="{% url 'visualiser' %}"></a>
+                        </div><!--//item-inner-->
+                    </div><!--//item-->
+                
+                    <div class="item item-pink item-2 col-lg-4 col-6">
+                        <div class="item-inner">
+                            <div class="icon-holder">
+                                <span aria-hidden="true" class="icon icon_puzzle_alt"></span>
+                            </div><!--//icon-holder-->
+                            <h3 class="title">Graphe</h3>
+                            <p class="intro">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>
+                            <a class="link" href="{% url 'Graphe' %}"><span></span></a>
+                        </div><!--//item-inner-->
+                    </div><!--//item-->
+                    <div class="item item-blue col-lg-4 col-6">
+                        <div class="item-inner">
+                            <div class="icon-holder">
+                                <span aria-hidden="true" class="icon icon_datareport_alt"></span>
+                            </div><!--//icon-holder-->
+                            <h3 class="title">Parcoure des donnes</h3>
+                            <p class="intro">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>
+                            <a class="link" href="{% url 'Parcoure_donnes' %}"><span></span></a>
+                        </div><!--//item-inner-->
+                    </div><!--//item-->
+                </div><!--//cards-->
+                
+            </div><!--//container-->
+        
+        </section><!--//cards-section-->
+    </div><!--//page-wrapper-->
+
+    <!-- Main Javascript -->
+    <script src="static/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/plugins/stickyfill/dist/stickyfill.min.js"></script>
+    <script src="{% static '/js/main.js' %}"></script>
+    
+
+</body>
+</html>
+    
+

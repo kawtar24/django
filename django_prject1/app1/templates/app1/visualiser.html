@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualiser</title>
+</head>
+<body>
+    <body>
+        <div class="container">    
+            <div class="intro">
+               <div class="cta-container">
+                   <form method="post" enctype="multipart/form-data" class="docs-search-form row gx-1 align-items-center" action="{% url 'visualiser' %}" id="fileUploadForm">
+                       {% csrf_token %}       
+                       <input type="file" name="file" id="id_file" accept=".xls, .xlsx, .csv">
+                       <button type="submit">Importer le fichier</button>
+                   </form> 
+               </div> 
+           </div>
+        </div>
+        <div>
+            {{ df|safe }}
+        </div>
+    </body>
+</body>
+</html>

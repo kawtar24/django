@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphe</title>
+</head>
+
+<body>
+    <div>
+        <!-- Formulaire pour télécharger le fichier -->
+        <form method="post" enctype="multipart/form-data" class="docs-search-form row gx-1 align-items-center"
+            action="{% url 'Graphe' %}"id="fileUploadForm">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Importer le fichier</button>
+        </form>
+        <!-- Formulaire pour choisir les colonnes X et Y -->
+        <form method="post" enctype="multipart/form-data" action="{% url 'Graphe' %}"id="ChooseColumnsForm">
+            {% csrf_token %}
+            {{ columns_form.as_p }}
+            <button type="submit">Afficher le graphique</button>
+        </form>
+
+    </div>
+</body>
+
+</html>
