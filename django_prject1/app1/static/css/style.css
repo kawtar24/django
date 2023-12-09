@@ -1,6 +1,6 @@
 body {
     font-family: 'Open Sans', arial, sans-serif;
-    color: #494d55;
+    color: rgb(255, 255, 255);
     font-size: 14px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale
@@ -310,7 +310,7 @@ select {
 }
 
 .header {
-    background: #494d55;
+    background: #fff;
     color: rgba(255, 255, 255, 0.85);
 
     padding: 30px 0
@@ -340,7 +340,7 @@ select {
 }
 
 .branding .text-highlight {
-    color: #40babd
+    color: #ffffff
 }
 
 .body-green .branding .text-highlight {
@@ -374,7 +374,7 @@ select {
 
 .branding .icon {
     font-size: 24px;
-    color: #40babd
+    color: #ffffff
 }
 
 .body-green .branding .icon {
@@ -556,7 +556,7 @@ select {
     margin-bottom: 0;
     font-weight: bold;
     padding-bottom: 10px;
-    border-bottom: 1px solid #d7d7d7
+    border-bottom: 1px solid #fff6f6
 }
 
 .doc-section h1 {
@@ -985,7 +985,7 @@ select {
 
 .doc-menu .nav-link:hover,
 .doc-menu .nav-link:focus {
-    color: #494d55;
+    color: #fff;
     text-decoration: none;
     background: none
 }
@@ -1052,7 +1052,7 @@ select {
 }
 
 .doc-sub-menu .nav-link:hover {
-    color: #494d55;
+    color: #fff;
     text-decoration: none;
     background: none
 }
@@ -1225,7 +1225,7 @@ select {
 }
 
 .landing-page .header {
-    background: #494d55;
+    background: #fff;
     color: rgba(255, 255, 255, 0.85);
     padding: 60px 0
 }

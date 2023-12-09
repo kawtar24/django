@@ -1,29 +1,222 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Graphe</title>
+    <title>Graph</title>
+    <!-- Add this in the <head> section -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyldQST4vX3jPaRTWR83pM4p4MEelQ" crossorigin="anonymous">
+
+    <!-- Optional: Add Bootstrap JavaScript (Popper.js and Bootstrap JS) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+        integrity="sha384-9aYxh5A5JDQO5bwnM0v8F2VvzPqUAb5T9CkssMmPkO6d5i7e6UxjR6q5WxUpGW+1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyldQST4vX3jPaRTWR83pM4p4MEelQ"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7e9e9;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fc9ec7;
+            padding: 20px;
+            border: 1px solid #fc9ec7;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+        }
+
+        fieldset {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        legend {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .form-check {
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+
+        
+
+        .form-check input {
+            margin-right: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border: 1px solid #EA5395;
+            border-radius: 4px;
+            color: #fff;
+            background-color: #EA5395;
+        }
+
+        .btn:hover {
+            background-color: #EA5395;
+            border-color: #EA5395;
+        }
+
+        .upload-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .upload-section h2 {
+            color: #EA5395;
+            margin-bottom: 10px;
+        }
+
+        .upload-section p {
+            color: #555;
+            font-size: 14px;
+        }
+
+        /* Styles for the uploaded file visualization */
+        .uploaded-visualization {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .uploaded-visualization img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+        }
+
+        .thead-dark th {
+            background-color: #343a40;
+            color: #fff;
+        }
+    </style>
 </head>
 
-<body>
-    <div>
-        <!-- Formulaire pour télécharger le fichier -->
-        <form method="post" enctype="multipart/form-data" class="docs-search-form row gx-1 align-items-center"
-            action="{% url 'Graphe' %}"id="fileUploadForm">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Importer le fichier</button>
-        </form>
-        <!-- Formulaire pour choisir les colonnes X et Y -->
-        <form method="post" enctype="multipart/form-data" action="{% url 'Graphe' %}"id="ChooseColumnsForm">
-            {% csrf_token %}
-            {{ columns_form.as_p }}
-            <button type="submit">Afficher le graphique</button>
-        </form>
+<body class="container mt-4">
 
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        
+    <fieldset>
+            <div>
+                <input type="checkbox" class="showInputCheckbox" name="graph" value="1" id="linePlot">
+                <label class="form-check-label" for="linePlot">Line Plot</label>
+            </div>
+       
+
+
+        <div>
+            <input type="checkbox" class="showInputCheckbox" name="graph" value="2" id="scatterPlot">
+            <label class="form-check-label" for="scatterPlot">Scatter Plot</label>
+        </div>
+        
+        
+
+        <div>
+            <input type="checkbox" class="showInputCheckbox" name="graph" value="3" id="boxPlot">
+            <label class="form-check-label" for="boxPlot">Box Plot</label>
+        </div>
+
+        
+
+        <div>
+            <input type="checkbox" class="showInputCheckbox" name="graph" value="4" id="histogramPlot">
+            <label class="form-check-label" for="histogramPlot">Histogram Plot</label>
+        </div>
+        </div>
+
+        <div>
+            <input type="checkbox" class="showInputCheckbox" name="graph" value="5" id="kdePlot">
+            <label class="form-check-label" for="kdePlot">KDE Plot</label>
+        </div>
+        </div>
+
+        <div>
+            <input type="checkbox" class="showInputCheckbox" name="graph" value="6" id="violinPlot">
+            <label class="form-check-label" for="violinPlot">Violin Plot</label>
+        </div>
+        </div>
+        <div>
+            <input type="checkbox" class="showInputCheckbox" name="graph" value="7" id="barPlot">
+            <label class="form-check-label" for="barPlot">Bar Plot</label>
+        </div>
+        <div>
+            <input type="checkbox" class="showInputCheckbox" name="graph" value="8" id="heatmap">
+            <label class="form-check-label" for="heatmap">Heatmap</label>
+        </div>
+        <div>
+            <input type="checkbox" class="showInputCheckbox" name="graph" value="9" id="piechart">
+            <label class="form-check-label" for="piechart">Pie Chart</label>
+        </div>
+        <br>
+
+        <div class="form-group">
+            <input type="text" class="form-control hiddenInput" name="val1" placeholder="Valeur1">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control hiddenInput" name="val2" placeholder="Valeur2"><br>
+        </div>
+    </fieldset> 
+        <button type="submit" class="btn btn-primary btn-block" value="Upload">Upload</button>
+    </form>
+
+    {% if plot_url %}
+    <div class="uploaded-visualization">
+        <h2 class="text-center mt-4">Graph</h2>
+        <img src="data:image/png;base64,{{ plot_url }}" alt="Seaborn Plot" class="img-fluid">
     </div>
-</body>
+    {% endif %}
 
+    <script>
+        // Get the checkbox and input elements by their IDs
+        const showInputCheckboxes = document.getElementsByClassName('showInputCheckbox');
+        const hiddenInputs = document.getElementsByClassName('hiddenInput');
+
+
+        for (let i = 0; i < showInputCheckboxes.length; i++) {
+            // Add an event listener to each checkbox to toggle the input visibility
+            showInputCheckboxes[i].addEventListener('change', function () {
+                // Loop through all elements with the class name 'hiddenInput'
+                for (let j = 0; j < hiddenInputs.length; j++) {
+                    hiddenInputs[j].style.display = this.checked ? 'block' : 'none';
+                }
+            });
+        }
+
+    </script>
+
+</body>
 </html>
