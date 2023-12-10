@@ -25,6 +25,7 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         form {
             max-width: 600px;
             margin: 20px auto;
@@ -36,7 +37,7 @@
         }
 
         fieldset {
-            border: 1px solid #ddd;
+            border: 1px solid #dddddd;
             padding: 10px;
             margin-bottom: 15px;
             border-radius: 5px;
@@ -52,7 +53,7 @@
             padding: 10px;
         }
 
-        
+
 
         .form-check input {
             margin-right: 5px;
@@ -121,75 +122,74 @@
             background-color: #343a40;
             color: #fff;
         }
+        .navbar {
+            padding: 25px;
+
+        }
+        
     </style>
 </head>
 
 <body class="container mt-4">
-
+    <div class="navbar"></div>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
-        
-    <fieldset>
+        <h1></h1>
+        <fieldset>
             <div>
                 <input type="checkbox" class="showInputCheckbox" name="graph" value="1" id="linePlot">
                 <label class="form-check-label" for="linePlot">Line Plot</label>
             </div>
-       
 
+            <div>
+                <input type="checkbox" class="showInputCheckbox" name="graph" value="2" id="scatterPlot">
+                <label class="form-check-label" for="scatterPlot">Scatter Plot</label>
+            </div>
 
-        <div>
-            <input type="checkbox" class="showInputCheckbox" name="graph" value="2" id="scatterPlot">
-            <label class="form-check-label" for="scatterPlot">Scatter Plot</label>
-        </div>
-        
-        
+            <div>
+                <input type="checkbox" class="showInputCheckbox" name="graph" value="3" id="boxPlot">
+                <label class="form-check-label" for="boxPlot">Box Plot</label>
+            </div>
 
-        <div>
-            <input type="checkbox" class="showInputCheckbox" name="graph" value="3" id="boxPlot">
-            <label class="form-check-label" for="boxPlot">Box Plot</label>
-        </div>
+            <div>
+                <input type="checkbox" class="showInputCheckbox" name="graph" value="4" id="histogramPlot">
+                <label class="form-check-label" for="histogramPlot">Histogram Plot</label>
+            </div>
+            </div>
 
-        
+            <div>
+                <input type="checkbox" class="showInputCheckbox" name="graph" value="5" id="kdePlot">
+                <label class="form-check-label" for="kdePlot">KDE Plot</label>
+            </div>
+            </div>
 
-        <div>
-            <input type="checkbox" class="showInputCheckbox" name="graph" value="4" id="histogramPlot">
-            <label class="form-check-label" for="histogramPlot">Histogram Plot</label>
-        </div>
-        </div>
+            <div>
+                <input type="checkbox" class="showInputCheckbox" name="graph" value="6" id="violinPlot">
+                <label class="form-check-label" for="violinPlot">Violin Plot</label>
+            </div>
+            </div>
+            <div>
+                <input type="checkbox" class="showInputCheckbox" name="graph" value="7" id="barPlot">
+                <label class="form-check-label" for="barPlot">Bar Plot</label>
+            </div>
+            <div>
+                <input type="checkbox" class="showInputCheckbox" name="graph" value="8" id="heatmap">
+                <label class="form-check-label" for="heatmap">Heatmap</label>
+            </div>
+            <div>
+                <input type="checkbox" class="showInputCheckbox" name="graph" value="9" id="piechart">
+                <label class="form-check-label" for="piechart">Pie Chart</label>
+            </div>
+            <br>
 
-        <div>
-            <input type="checkbox" class="showInputCheckbox" name="graph" value="5" id="kdePlot">
-            <label class="form-check-label" for="kdePlot">KDE Plot</label>
-        </div>
-        </div>
-
-        <div>
-            <input type="checkbox" class="showInputCheckbox" name="graph" value="6" id="violinPlot">
-            <label class="form-check-label" for="violinPlot">Violin Plot</label>
-        </div>
-        </div>
-        <div>
-            <input type="checkbox" class="showInputCheckbox" name="graph" value="7" id="barPlot">
-            <label class="form-check-label" for="barPlot">Bar Plot</label>
-        </div>
-        <div>
-            <input type="checkbox" class="showInputCheckbox" name="graph" value="8" id="heatmap">
-            <label class="form-check-label" for="heatmap">Heatmap</label>
-        </div>
-        <div>
-            <input type="checkbox" class="showInputCheckbox" name="graph" value="9" id="piechart">
-            <label class="form-check-label" for="piechart">Pie Chart</label>
-        </div>
-        <br>
-
-        <div class="form-group">
-            <input type="text" class="form-control hiddenInput" name="val1" placeholder="Valeur1">
-        </div>
-        <div class="form-group">
-            <input type="text" class="form-control hiddenInput" name="val2" placeholder="Valeur2"><br>
-        </div>
-    </fieldset> 
+            <div class="form-group">
+                <input type="text" class="form-control hiddenInput" name="val1" placeholder="Valeur1">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control hiddenInput" name="val2" placeholder="Valeur2"><br>
+            </div>
+        </fieldset>
         <button type="submit" class="btn btn-primary btn-block" value="Upload">Upload</button>
     </form>
 
@@ -205,7 +205,6 @@
         const showInputCheckboxes = document.getElementsByClassName('showInputCheckbox');
         const hiddenInputs = document.getElementsByClassName('hiddenInput');
 
-
         for (let i = 0; i < showInputCheckboxes.length; i++) {
             // Add an event listener to each checkbox to toggle the input visibility
             showInputCheckboxes[i].addEventListener('change', function () {
@@ -219,4 +218,5 @@
     </script>
 
 </body>
+
 </html>
