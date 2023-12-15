@@ -310,14 +310,15 @@ select {
 }
 
 .header {
-    background: #fff;
+    background: #616670;
     color: rgba(255, 255, 255, 0.85);
 
     padding: 30px 0
 }
 
 .header a {
-    color: #fff
+    color: #616670
+
 }
 
 .header .container {
@@ -1225,13 +1226,13 @@ select {
 }
 
 .landing-page .header {
-    background: #fff;
+    background: #616670;
     color: rgba(255, 255, 255, 0.85);
     padding: 60px 0
 }
 
 .landing-page .header a {
-    color: #fff
+    color: #616670
 }
 
 .landing-page .branding {

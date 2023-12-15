@@ -3,10 +3,12 @@ import os
 from urllib import request
 from flask import redirect
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')  # Utilisez le backend 'Agg' (non interactif) au lieu du backend par défaut
 import matplotlib.pyplot as plt
 import matplotlib
 import pandas as pd
-
+from scipy.stats import bernoulli ,binom ,expon, norm, poisson,uniform
 from io import BytesIO, StringIO
 import base64
 import seaborn as sns
@@ -169,12 +171,61 @@ def Graphe(request):
     else:
         form = FileUploadForm()
     return render(request, 'app1/Graphe.html', {'form': form, 'file_name': file_name, 'plot_url': plot_url, 'df_head': df_head})
-    
-
-  
-
-
-
+   
     
 def Parcoure_donnes(request):
   return render(request, 'app1/Parcoure_donnes.html')
+
+
+def file_loi_view(request):
+                 
+                selected_graph = request.POST.get('graph')
+                val1 = request.POST.get('val1')
+                val2 =request.POST.get('val2')
+                            
+           
+                if selected_graph == '1' :
+                          data_bern = bernoulli.rvs(size=1000,p= float (val1))
+                          plot = sns.histplot(data_bern, kde=True, stat='probability')
+                          plot.set(xlabel='Bernoulli', ylabel='Probabilité')
+
+                if selected_graph == '2' :
+                         
+                          data_binom = binom.rvs(n=int (val2),p=float (val1),loc=0,size=1000)
+                          plot = sns.histplot(data_binom, kde=True, stat='probability')
+                          plot.set(xlabel='Binomial', ylabel='Probabilité')
+
+                if selected_graph == '3' :
+                          
+                          data_unif = uniform.rvs(loc=int (val1), scale=int (val2), size=1000)
+                          plt.figure(figsize=(6,4))
+                          plot = sns.histplot(data_unif, kde=True, stat='probability')
+                          
+                if selected_graph == '4' :
+                          data_binom = poisson.rvs(mu=int (val1), size=10000)
+                          plot = sns.histplot(data_binom, kde=True, stat='probability')
+                          plot.set(xlabel='Poisson', ylabel='Probabilité')
+                if selected_graph == '5' :
+                          data = norm.rvs(loc=int (val1), scale=int (val2), size=1000)
+                          plot = sns.kdeplot(data, fill=True)
+
+                if selected_graph == '6' :
+                          data = expon.rvs(scale=float (val1), size=1000)
+                          plot=sns.kdeplot(data, fill=True)
+
+    # Save the plot as an image  
+               
+               # Save the plot as an image (you can save it to a file or encode it as base64)
+                buffer = io.BytesIO()
+                plt.savefig(buffer, format='png')
+                buffer.seek(0)
+                image_png = buffer.getvalue()
+                buffer.close()
+                # Close all     Matplotlib figuliste to clear the state
+                plt.close()
+                # Encode the plot to base64
+                plot_url = base64.b64encode(image_png).decode('utf-8')
+
+                return render(request, 'app1/loi.html', {'plot_url': plot_url})
+
+

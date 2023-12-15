@@ -33,6 +33,7 @@
 
         <section class="cards-section text-center">
                 <div id="cards-wrapper" class="cards-wrapper row">
+
                     <div class="item item-green col-lg-4 col-6">
                         <div class="item-inner">
                             <div class="icon-holder">
@@ -55,6 +56,7 @@
                             <a class="link" href="{% url 'Graphe' %}"><span></span></a>
                         </div><!--//item-inner-->
                     </div><!--//item-->
+                    
                     <div class="item item-blue col-lg-4 col-6">
                         <div class="item-inner">
                             <div class="icon-holder">
@@ -65,12 +67,30 @@
                             <a class="link" href="{% url 'Parcoure_donnes' %}"><span></span></a>
                         </div><!--//item-inner-->
                     </div><!--//item-->
-                </div><!--//cards-->
-                
+
+                    <div class="item item-purple col-lg-4 col-6">
+                        <div class="item-inner">
+                            <div class="icon-holder">
+                                <span aria-hidden="true" class="icon icon_lifesaver"></span>
+                            </div><!--//icon-holder-->
+                            <h3 class="title">Loi</h3>
+                            <p class="intro">Layout for FAQ page. Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>
+                            <a class="link" href="{% url 'loi' %}"><span></span></a>
+                        </div><!--//item-inner-->
+                    </div><!--//item-->
+                    
+                </div><!--//cards-->  
             </div><!--//container-->
         
         </section><!--//cards-section-->
     </div><!--//page-wrapper-->
+
+    <footer class="footer text-center">
+        <div class="container">
+            
+            
+        </div><!--//container-->
+    </footer><!--//footer-->
 
     <!-- Main Javascript -->
     <script src="static/plugins/bootstrap/js/bootstrap.min.js"></script>
