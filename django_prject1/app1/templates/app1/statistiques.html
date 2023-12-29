@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css">
+    <title>statistiques</title>
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            /* justify-content: center; */
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #58BBEE;
+            padding: 20px;
+            border: 1px solid #58BBEE;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+
+        }
+
+        .left-side,
+        .right-side {
+            float: left;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: inline-table;
+            margin-bottom: 5px;
+        }
+
+        input[type="checkbox"] {
+            margin-bottom: 10px;
+        }
+
+        input[type="number"] {
+            width: 97%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            width: 102%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        } */
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+
+        }
+
+        /* Responsive styles */
+        @media only screen and (max-width: 600px) {
+
+            .left-side,
+            .right-side {
+                width: 100%;
+                float: none;
+            }
+            .table.table-bordered {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+            border-collapse: collapse;
+        }
+
+        .table.table-bordered th,
+        .table.table-bordered td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #55a9fc;
+        }
+
+        .table.table-bordered thead th {
+            background-color: #527853;
+            color: #fff;
+            border-color: #527853;
+        }
+
+        .table.table-bordered tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 123, 255, 0.05);
+        }
+
+        .table.table-bordered tbody tr:hover {
+            background-color: rgba(0, 123, 255, 0.1);
+        }
+        }
+
+        fieldset {
+            width: 98%;
+            padding: 8px;
+        }
+        .cadr{
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #fff;
+            border-radius: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+        }
+        .cadr1{
+            background-color: #fff;
+            border-radius: auto;
+            /* Ajustez la valeur pour correspondre à la bordure du tableau */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+            margin-top: 40px;
+            /* Espace entre la navbar et la carte */
+            padding: 20px;
+            width: 80%;
+            /* Ajustez la largeur selon vos besoins */
+            margin: auto;
+            /* Centre horizontalement */
+        }
+        .table.table-bordered {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+            border-collapse: collapse;
+        }
+
+        .table.table-bordered th,
+        .table.table-bordered td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #55a9fc;
+        }
+
+        .table.table-bordered thead th {
+            background-color: #527853;
+            color: #fff;
+            border-color: #527853;
+        }
+
+        .table.table-bordered tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 123, 255, 0.05);
+        }
+
+        .table.table-bordered tbody tr:hover {
+            background-color: rgba(0, 123, 255, 0.1);
+        }
+        
+    </style>
+</head>
+
+<body>
+    <form method="post" enctype="multipart/form-data" action="{% url 'statistiques' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div class="left-side">
+            <fieldset>
+                <legend>choisissez</legend>
+                <input type="checkbox" name="stats_values" value="1">5 première ligne<br>
+                <input type="checkbox" name="stats_values" value="2">5 dernière ligne<br>
+                <input type="checkbox" name="stats_values" value="3">Afficher les nom de colonnes<br>
+                <br>
+            </fieldset>
+        </div>
+
+        <fieldset>
+            <div class="right-side">
+                <label>ligne à afficher</label><input type="number" name="stats"><br>
+                <label>Intervalle de ligne</label><input type="number" name="statsd">
+                <label>de</label><input type="number" name="statsf"><br>
+            </div>
+        </fieldset>
+        </div>
+        </div>
+
+        <input type="submit" value="Upload">
+
+    </form>
+
+    <div class="cadr">
+    {% if tab is not None and not tab.empty and tab.shape.0 > 0 %} <h2>{{ name }}</h2>
+    
+    <table border="1"class="table table-bordered">
+        <tr>
+            {% for col in tab.columns %}
+            <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+        {% for index, row in tab.iterrows %}
+        <tr>
+            {% for value in row %}
+            <td>{{ value }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+<div class="cadr">
+    {% if liste is not None and not res.empty%}
+    <h1>List des Colonnes</h1>
+    <ul>
+        {% for column_name in liste %}
+        <li>{{ column_name }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
+    {% if ligne is not None and not res.empty%}
+
+    <h1>la ligne</h1>
+    <ul>
+        {% for column, value in ligne.items %}
+        <li><strong>{{ column }}</strong>: {{ value }}</li>
+        {% endfor %}
+    </ul>
+
+    </ul>
+    {% endif %}
+    {% if lignes is not None and not res.empty%}
+    <!-- <h1>(Les indexes: {{ lignes.index.min }} - {{ lignes.index.max }})</h1> -->
+
+    {% for index, row in lignes.iterrows %}
+    <h2>Ligne Numero {{ index }}</h2>
+    <ul>
+        {% for column, value in row.items %}
+        <li><strong>{{ column }}</strong>: {{ value }}</li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+    {% endif %}
+</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
